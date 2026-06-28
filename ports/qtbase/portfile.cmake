@@ -24,6 +24,7 @@ set(${PORT}_PATCHES
         fix-link-lib-discovery.patch
         macdeployqt-symlinks.patch
         fix-missing-include.patch
+        fix-qwindowswindow-cpp.patch
         moltenvk.patch
         xcodebuild-not-installed.patch
         fix-libresolv-test.patch
