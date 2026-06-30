@@ -1,0 +1,177 @@
+{
+    "dependencies": [
+        "abseil",
+        "apriltag",
+        "boost",
+        {
+            "name": "ceres",
+            "features": [
+                "cuda",
+                "eigensparse",
+                "lapack",
+                "schur",
+                "suitesparse"
+            ]
+        },
+        {
+            "name": "colmap",
+            "features": [
+                "cgal",
+                "cuda",
+                "cuda-redist",
+                "gui"
+            ]
+        },
+        {
+            "name": "g2o",
+            "features": [
+                "spdlog"
+            ]
+        },
+        "gtest",
+        {
+            "name": "libtorch",
+            "features": [
+                "cuda",
+                "dist",
+                "gflags",
+                "glog",
+                "llvm",
+                "mpi",
+                "opencv",
+                "vulkan",
+                "zstd"
+            ]
+        },
+        "nlohmann-json",
+        {
+            "name": "opencv3",
+            "features":[
+                "bgsegm",
+                "contrib",
+                "dnn",
+                "eigen",
+                "flann",
+                "freetype",
+                "gapi",
+                "gdcm",
+                "gstreamer",
+                "halide",
+                "ipp",
+                "jasper",
+                "jpeg",
+                "line-descriptor",
+                "msmf",
+                "nonfree",
+                "openexr",
+                "opengl",
+                "openmp",
+                "ovis",
+                "png",
+                "qt",
+                "quality",
+                "quirc",
+                "salicency",
+                "sfm",
+                "tbb",
+                "tiff",
+                "vtk",
+                "webp"
+            ]
+        },
+        {
+            "name": "opencv4",
+            "features": [
+                "ade",
+                "aravis",
+                "calib3d",
+                "carotene",
+                "contrib",
+                "cuda",
+                "cudnn",
+                "directml",
+                "dnn",
+                "dnn-cuda",
+                "dshow",
+                "eigen",
+                "ffmpeg",
+                "freetype",
+                "fs",
+                "gapi",
+                "gdcm",
+                "gstreamer",
+                "hdf",
+                "highgui",
+                "intrinsics",
+                "ipp",
+                "jpeg",
+                "jpegxl",
+                "msmf",
+                "nonfree",
+                "opencl",
+                "openexr",
+                "opengl",
+                "openjpeg",
+                "openmp",
+                "openvino",
+                "ovis",
+                "png",
+                "qt",
+                "quality",
+                "quirc",
+                "rgbd",
+                "sfm",
+                "tbb",
+                "text",
+                "thread",
+                "tiff",
+                "vtk",
+                "vulkan",
+                "webp",
+                "win32ui"
+            ]
+        },
+        {
+            "name": "pangolin",
+            "features": [
+                "eigen",
+                "examples",
+                "ffmpeg",
+                "gui",
+                "jpeg",
+                "lz4",
+                "module",
+                "openexr",
+                "openni2",
+                "png",
+                "pybind11",
+                "realsense",
+                "tiff",
+                "tools",
+                "vars",
+                "video",
+                "zstd"
+            ]
+        },
+        {
+            "name": "pcl",
+            "features": [
+                "apps",
+                "cuda",
+                "examples",
+                "libusb",
+                "opengl",
+                "openni2",
+                "pcap",
+                "qt",
+                "simulation",
+                "surface-on-nurbs",
+                "tools",
+                "visualization",
+                "vtk"
+            ]
+        },
+        "poselib",
+        "sophus"
+    ]
+}
