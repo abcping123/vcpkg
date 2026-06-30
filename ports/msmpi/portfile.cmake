@@ -25,15 +25,29 @@ set(SYSTEM_MPIEXEC_FILEPATH "${PROGRAM_FILES_PLATFORM_BITNESS}/Microsoft MPI/Bin
 
 if(EXISTS "${SYSTEM_MPIEXEC_FILEPATH}")
     set(MPIEXEC_VERSION_LOGNAME "mpiexec-version")
+    set(MPIEXEC_VERSION_SCRIPT "${CURRENT_BUILDTREES_DIR}/get-mpiexec-version.ps1")
+    set(POWERSHELL_COMMAND "$ENV{SystemRoot}/System32/WindowsPowerShell/v1.0/powershell.exe")
+
+    if(NOT EXISTS "${POWERSHELL_COMMAND}")
+        set(POWERSHELL_COMMAND "powershell.exe")
+    endif()
+
+    string(REPLACE "'" "''" SYSTEM_MPIEXEC_FILEPATH_ESCAPED "${SYSTEM_MPIEXEC_FILEPATH}")
+    file(WRITE "${MPIEXEC_VERSION_SCRIPT}"
+        "$version = (Get-Item -LiteralPath '${SYSTEM_MPIEXEC_FILEPATH_ESCAPED}').VersionInfo.FileVersion\n"
+        "[Console]::Out.WriteLine($version)\n"
+    )
+
     vcpkg_execute_required_process(
-        COMMAND ${SYSTEM_MPIEXEC_FILEPATH}
+        COMMAND "${POWERSHELL_COMMAND}" -NoProfile -ExecutionPolicy Bypass -File "${MPIEXEC_VERSION_SCRIPT}"
         WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}"
         LOGNAME ${MPIEXEC_VERSION_LOGNAME}
     )
     file(READ "${CURRENT_BUILDTREES_DIR}/${MPIEXEC_VERSION_LOGNAME}-out.log" MPIEXEC_OUTPUT)
+    string(STRIP "${MPIEXEC_OUTPUT}" MPIEXEC_OUTPUT)
 
-    if(MPIEXEC_OUTPUT MATCHES "\\[Version ([0-9]+\\.[0-9]+\\.[0-9]+)\\.[0-9]+\\]")
-        if(NOT CMAKE_MATCH_1 STREQUAL MSMPI_VERSION)
+    if(MPIEXEC_OUTPUT MATCHES "^([0-9]+\\.[0-9]+\\.[0-9]+)\\.[0-9]+$")
+        if(NOT CMAKE_MATCH_1 STREQUAL "${MSMPI_VERSION}")
             download_msmpi_redistributable_package()
 
             message(FATAL_ERROR
