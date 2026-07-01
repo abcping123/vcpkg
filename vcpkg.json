@@ -144,7 +144,6 @@
                 "openexr",
                 "openni2",
                 "png",
-                "pybind11",
                 "realsense",
                 "tiff",
                 "tools",
